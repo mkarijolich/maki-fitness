@@ -21,9 +21,9 @@ routinesRouter.get('/', async(req,res) => {
     try{
         const routines = await getAllPublicRoutines();
         
-        res.send(
+        res.send({
             routines
-        )
+        })
     }catch (error) {
         throw error;
     }

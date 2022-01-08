@@ -3,7 +3,7 @@ const express = require('express');
 const app = express.Router()
 
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET  = 'nevertell' } = process.env;
 
 app.get('/health', function (req, res, next) {
   res.json({ 'message' : 'Looks good!'});
@@ -11,6 +11,7 @@ app.get('/health', function (req, res, next) {
 
 const userMiddleware = require('./middleware/userMiddleware')
 app.use(userMiddleware);
+
 
 // attach other routers from files in this api directory (users, activities...)
 const usersRouter = require('./users');
