@@ -26,7 +26,7 @@ export const fetchAllActivities = async () => {
 
 
 export const fetchAllRoutines = async () => {
-    const token = getTokenFromLocalStorage();
+    // const token = getTokenFromLocalStorage();
   
     try {
       const response = await fetch(`${BASE_URL}/routines`, {
@@ -46,21 +46,20 @@ export const fetchAllRoutines = async () => {
 
   export const register = async (username, password) => {
     try {
-        const response = await fetch(`${API_URL}/users/register`, {
+        const response = await fetch(`${BASE_URL}/users/register`, {
             method: "POST",
+            timeout:8000,
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user: {
                     username: username,
                     password: password
-                }
             })
 
         })
-        const token = await response.json();
-        return token.data.token;
+        const res = await response.json();
+        return res.token;
 
     } catch (error) {
         console.log("An error occurred while trying to register a new user.")
@@ -70,20 +69,18 @@ export const fetchAllRoutines = async () => {
 export const login = async (username, password) => {
 
     try {
-        const response = await fetch(`${API_URL}/users/login`, {
+        const response = await fetch(`${BASE_URL}/users/login`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user: {
-                    username: username,
-                    password: password
-                }
+                username: username,
+                password: password
             })
         })
         const res = await response.json();
-        return res.data.token;
+        return res.token;
     }
     catch (error) {
         console.log("An error occurred while trying to login.")
@@ -97,7 +94,7 @@ export const createNewActivity = async (name, description) => {
     const token = getTokenFromLocalStorage();
 
     try {
-        const response = await fetch(`${API_URL}/posts`, {
+        const response = await fetch(`${BASE_URL}/activities`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -105,10 +102,8 @@ export const createNewActivity = async (name, description) => {
                     `Bearer ${token}`
             },
             body: JSON.stringify({
-                post: {
                     name: name,
                     description: description
-                }
             })
         })
         return await response.json();
@@ -123,7 +118,7 @@ export const createNewRoutine = async (name, goal) => {
     const token = getTokenFromLocalStorage();
 
     try {
-        const response = await fetch(`${API_URL}/posts`, {
+        const response = await fetch(`${BASE_URL}/routines`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -131,10 +126,8 @@ export const createNewRoutine = async (name, goal) => {
                     `Bearer ${token}`
             },
             body: JSON.stringify({
-                post: {
                     name: name,
                     goal: goal
-                }
             })
         })
         return await response.json();

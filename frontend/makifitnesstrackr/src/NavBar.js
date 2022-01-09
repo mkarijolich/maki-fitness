@@ -8,7 +8,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { NavHashLink } from 'react-router-hash-link';
 
 
@@ -66,8 +65,9 @@ const NavBar = ({ user, handleLogout, activities,routines }) => {
                                     color="text.primary"
                                     sx={{ my: 1, mx: 1.5 }}
                                 >
+                                    MyRoutines
                                 </NavLink>
-                                <AccountCircleIcon fontSize="large" sx={{ position: 'relative', top:10 }} />
+                            
                                 <Button
                                     variant="outlined"
                                     sx={{ my: 1, mx: 1.5 }}

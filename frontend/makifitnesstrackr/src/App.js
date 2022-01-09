@@ -4,12 +4,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css';
 
 import Home from "../src/Home"
-// import Register from './Register';
 import Activities from './Activities';
 import Routines from './Routines';
 import NavBar from './NavBar';
 
-import { fetchAllActivities, fetchAllRoutines, createNewActivity, createNewRoutine } from "../src/API/index";
+import { fetchAllActivities, fetchAllRoutines, createNewActivity, createNewRoutine, login, register } from "../src/API/index";
 
 
 
@@ -26,8 +25,6 @@ function App() {
   }
   const [user, setUser] = useState(savedUser ? savedUser : {});
   const [activities, setActivities] = useState([]);
-  const [filteredActivities, setFilteredActivities] = useState([]);
-
   const [routines, setRoutines] = useState([]);
 
   const handleLogout = () => {
@@ -44,7 +41,6 @@ function App() {
     )
     .then(([routinesFromAPI]) => {
       setRoutines(routinesFromAPI);
-      // setFilteredActivities(routinesFromAPI);
       console.log(routinesFromAPI)
     })
   }, [])
@@ -57,8 +53,6 @@ function App() {
     )
     .then(([activitiesFromAPI]) => {
       setActivities(activitiesFromAPI);
-      setFilteredActivities(activitiesFromAPI);
-      console.log(activitiesFromAPI)
     })
   }, [])
 
@@ -71,7 +65,7 @@ function App() {
         <Route path='/' element={<Home setUser={setUser} user={user}/>}/>
          {/* <Route path='/login' element={<Login  setUser={setUser}/>} /> */}
         {/* <Route path='/register' element={<Register />} /> */}
-        <Route path='/activities' element={<Activities activities={activities} filteredActivities={filteredActivities} setActivities={setActivities} setFilteredActivities={setFilteredActivities}/>} />
+        <Route path='/activities' element={<Activities user={user} activities={activities} setActivities={setActivities} />} />
         <Route path='/routines' element={<Routines routines={routines} setRoutines={setRoutines}/>} />
         {/* <Route path='/posts/:id/edit' element={<Edit currentPostInput={currentPostInput} />} /> */}
         {/* <Route path='/posts/:id/delete' element={<Delete  post={currentPostInput}/>} /> */}

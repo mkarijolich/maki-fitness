@@ -1,5 +1,5 @@
-import  React from "react";
-import { useState } from 'react';
+import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Typography } from "@mui/material";
@@ -15,7 +15,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
-import { login, register } from "../src/API/index"
+import { login, register } from "../src/API/index";
 
 const theme = createTheme();
 
@@ -30,8 +30,9 @@ const Home = (props) => {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
+    console.log("logging in with username + password ", username, password);
     const token = await login(username, password);
-    console.log(token)
+    console.log(token);
     if (!token) {
       setFailure(true);
       setOpen(true);
@@ -41,12 +42,37 @@ const Home = (props) => {
       token: token,
       username: username,
     };
+    console.log("Setting user", user);
     setUser(user);
+    console.log("Setting local storage");
     localStorage.setItem("username", username);
     localStorage.setItem("token", token);
+    console.log("username", username);
+    console.log("token", token);
 
     setFailure(false);
     setOpen(true);
+    navigate("/");
+  };
+
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault();
+    const token = await register(username, password);
+
+    if (!token) {
+      return;
+    }
+
+    const user = {
+      token: token,
+      username: username,
+    };
+
+    setUser(user);
+    localStorage.setItem("username", username);
+    localStorage.setItem("token", token);
+    console.log("newusername", username);
+
     navigate("/");
   };
 
@@ -244,7 +270,7 @@ const Home = (props) => {
               </CardActionArea>
               <CardActions>
                 <Button size="small" color="primary">
-                See all activities
+                  See all activities
                 </Button>
               </CardActions>
             </Card>
@@ -261,10 +287,12 @@ const Home = (props) => {
             backgroundColor: "#4d4f4f",
           }}
         >
-          <Box><a id="signin">
-            <Typography variant="h5" sx={{ color: "white" }} >
-              Sign In
-            </Typography></a>
+          <Box>
+            <a id="signin">
+              <Typography variant="h5" sx={{ color: "white" }}>
+                Sign In / Sign Up
+              </Typography>
+            </a>
             <Box component="form" sx={{ color: "white" }}>
               <Grid container spacing={2}>
                 <Grid Grid item xs={12} sm={12}>
@@ -292,38 +320,53 @@ const Home = (props) => {
                       onChange={(e) => setPassword(e.currentTarget.value)}
                     />
                   </Grid>
-                  <Button
-                    type="submit"
-                    variant="text"
-                    fullWidth
-                    sx={{ mt: 3, mb: 2 }}
-                    onClick={handleLoginSubmit}
-                  >
-                    Log In
-                  </Button>
+                  <Box 
+                    sx={{ 
+                      display:'flex',
+                      flexDirection:'row'
+                    }}>
+                    <Button
+                      type="submit"
+                      variant="text"
+                      fullWidth
+                      sx={{ mt: 3, mb: 2 }}
+                      onClick={handleLoginSubmit}
+                    >
+                      Log In
+                    </Button>
+                    <Button
+                      type="submit"
+                      variant="text"
+                      fullWidth
+                      sx={{ mt: 3, mb: 2 }}
+                      onClick={handleRegisterSubmit}
+                    >
+                      Register
+                    </Button>
+                  </Box>
                 </Grid>
               </Grid>
             </Box>
           </Box>
-          <Box>
+          {/* <Box>
             <Typography variant="h5" sx={{ color: "white" }}>
               Sign Up
             </Typography>
             <Box component="form">
               <Grid container spacing={2}>
                 <Grid Grid item xs={12} sm={12}>
-                  <TextField
+                  {/* <TextField
                     name="username"
                     required
                     fullWidth
                     id="username"
                     label="Username"
                     variant="standard"
-                    // value={username}
-                    // onChange={(e) => setUsername(e.currentTarget.value)}
-                  />
+                    value={username}
+                    onChange={(e) => setUsername(e.currentTarget.value)}
+                  /> */}
 
-                  <Grid item xs={12} sm={12}>
+          {/* <Grid item xs={12} sm={12}>
                     <TextField
                       name="password"
                       required
@@ -331,23 +374,23 @@ const Home = (props) => {
                       id="password"
                       label="Password"
                       variant="standard"
-                      // value={password}
-                      // onChange={(e) => setPassword(e.currentTarget.value)}
+                      value={password}
+                      onChange={(e) => setPassword(e.currentTarget.value)}
                     />
-                  </Grid>
-                  <Button
+                  </Grid> */}
+          {/* <Button
                     type="submit"
                     variant="text"
                     fullWidth
                     sx={{ mt: 3, mb: 2 }}
-                    // onClick={handleRegisterSubmit}
+                    onClick={handleRegisterSubmit}
                   >
                     Register
-                  </Button>
-                </Grid>
+                  </Button> */}
+          {/* </Grid>
               </Grid>
-            </Box>
-          </Box>
+            </Box> 
+          </Box> */}
         </Box>
       </Container>
     </ThemeProvider>

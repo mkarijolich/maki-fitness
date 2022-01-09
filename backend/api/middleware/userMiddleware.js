@@ -5,7 +5,7 @@ const { JWT_SECRET } = process.env;
 const userMiddleware = async (req,res, next)=> {// authentication func
     const prefix = 'Bearer ';
     const auth = req.header('Authorization');//checking user logged in 
-    
+    console.error(req.originalUrl)
     if(!auth) {//IF: The Authorization header wasn't set -- user not logged in
         
         next();// go next middleware

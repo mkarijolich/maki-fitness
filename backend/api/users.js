@@ -35,8 +35,7 @@ usersRouter.post("/register", async (req, res, next) => {
     }
 
     const user = await createUser({ username, password });
-    // console.log("user")
-    // console.log(user)
+
 
     const token = jwt.sign(
       {
@@ -54,6 +53,7 @@ usersRouter.post("/register", async (req, res, next) => {
       token
     });
   } catch ({ name, message }) {
+    console.error(message);
     next({ name, message });
   }
 });

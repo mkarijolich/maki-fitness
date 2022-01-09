@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Typography } from "@mui/material";
@@ -10,16 +10,23 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import { fetchAllRoutines,createNewRoutine } from "../src/API/index";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
 
 
 const theme = createTheme();
 
 const Routines = (props) => {
   const { routines, setRoutines } = props;
+  const [featuredRoutine, setFeaturedRoutine] = useState({});
+
 
   useEffect(() => {
     fetchAllRoutines().then((routines) => {
         setRoutines(routines);
+
+        const featured = routines[(routines.length * Math.random()) >> 0];
+        setFeaturedRoutine(featured)
     });
   }, [setRoutines]);
 
@@ -79,7 +86,7 @@ const Routines = (props) => {
                   </CardActionArea>
                   <CardActions>
                     <Button size="small" color="primary">
-                      Add to My Routine
+                      See all activities
                     </Button>
                   </CardActions>
                 </Card>
@@ -108,11 +115,10 @@ const Routines = (props) => {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  Lizard
+                  {featuredRoutine.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                   {featuredRoutine.goal}
                 </Typography>
               </CardContent>
             </CardActionArea>

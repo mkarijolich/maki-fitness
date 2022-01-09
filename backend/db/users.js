@@ -39,7 +39,7 @@ async function getUser({ username,password}){
         throw 'You made a mistake';
         }
     }catch(error){
-        console.log("wrong password")
+        console.log(error);
     }
 }
 
@@ -72,6 +72,8 @@ async function getUserByUsername(username){
         console.log(user)
         return user;
     }catch(error){
+        console.log("DB ERROR");
+        console.log(error);
         throw error;
     }
 }
