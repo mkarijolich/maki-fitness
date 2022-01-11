@@ -8,7 +8,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { NavHashLink } from 'react-router-hash-link';
+import { HashLink } from 'react-router-hash-link';
+import Link from '@mui/material/Link';
 
 
 const theme = createTheme();
@@ -29,44 +30,44 @@ const NavBar = ({ user, handleLogout, activities,routines }) => {
                     sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
                 >
                     <Toolbar sx={{ flexWrap: 'wrap' }}>
-                        <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+                        <Typography variant="h4" color="#006D77" noWrap sx={{ flexGrow: 1 }}>
                         Fitnesstrac-kr
                         </Typography>
                         
                         {Object.keys(user).length > 0 ?//logged in
                             <nav>
-                                <NavLink
-                                    to="/"
+                                <Link
+                                    href='/'
                                     variant="button"
                                     color="text.primary"
-                                    sx={{ my: 1, mx: 1.5 }}
+                                    sx={{ my: 1, mx: 1.5}}
                                 >
                                     Home
-                                </NavLink>
-                                <NavLink
-                                    to="/activities"
+                                </Link>
+                                <Link
+                                    href='/activities'
                                     variant="button"
                                     color="text.primary"
-                                    sx={{ my: 1, mx: 1.5 }}
+                                    sx={{ }}
                                 >
                                     Activities
-                                </NavLink>
-                                <NavLink
-                                    to="/routines"
+                                </Link>
+                                <Link
+                                    href='/routines'
                                     variant="button"
                                     color="text.primary"
                                     sx={{ my: 1, mx: 1.5 }}
                                 >
                                     Routines
-                                </NavLink>
-                                <NavLink
-                                    to="/myroutines"
+                                </Link>
+                                <Link
+                                    href='/myroutines'
                                     variant="button"
                                     color="text.primary"
                                     sx={{ my: 1, mx: 1.5 }}
                                 >
                                     MyRoutines
-                                </NavLink>
+                                </Link>
                             
                                 <Button
                                     variant="outlined"
@@ -81,46 +82,46 @@ const NavBar = ({ user, handleLogout, activities,routines }) => {
 
                             :
                             <nav>
-                                <NavLink
-                                    to="/"
+                                <Link
+                                    href='/'
                                     variant="button"
                                     color="text.primary"
                                     sx={{ my: 1, mx: 1.5 }}
                                 >
                                     Home
-                                </NavLink>
-                                <NavLink
-                                    to="/activities"
+                                </Link>
+                                <Link
+                                    href='/activities'
                                     variant="button"
                                     color="text.primary"
                                     sx={{ my: 1, mx: 1.5 }}
                                 >
                                     Activities
-                                </NavLink>
-                                <NavLink
-                                    to="/routines"
+                                </Link>
+                                <Link
+                                    href='/routines'
                                     variant="button"
                                     color="text.primary"
                                     sx={{ my: 1, mx: 1.5 }}
                                 >
                                     Routines
-                                </NavLink>
+                                </Link>
 
-                                <NavHashLink to="/#signin">
+                                <HashLink to="/#signin">
                                     <Button
                                         variant="outlined"
                                         sx={{ my: 1, mx: 1.5 }}>
                                         Sign In
                                     </Button>
-                                </NavHashLink>
+                                </HashLink>
 
-                                <NavHashLink to="/#signin">
+                                <HashLink to="/#signin">
                                     <Button
                                         variant="outlined"
                                         sx={{ my: 1, mx: 1.5 }}>
                                         Register
                                     </Button>
-                                </NavHashLink>
+                                </HashLink>
          
            
                             </nav>

@@ -7,6 +7,7 @@ import Home from "../src/Home"
 import Activities from './Activities';
 import Routines from './Routines';
 import NavBar from './NavBar';
+import MyRoutines from './MyRoutines';
 
 import { fetchAllActivities, fetchAllRoutines, createNewActivity, createNewRoutine, login, register } from "../src/API/index";
 
@@ -41,7 +42,7 @@ function App() {
     )
     .then(([routinesFromAPI]) => {
       setRoutines(routinesFromAPI);
-      console.log(routinesFromAPI)
+      // console.log(routinesFromAPI)
     })
   }, [])
 
@@ -63,10 +64,9 @@ function App() {
       <NavBar handleLogout={handleLogout} user={user} activities={activities} routines={routines}/>
       <Routes>
         <Route path='/' element={<Home setUser={setUser} user={user}/>}/>
-         {/* <Route path='/login' element={<Login  setUser={setUser}/>} /> */}
-        {/* <Route path='/register' element={<Register />} /> */}
         <Route path='/activities' element={<Activities user={user} activities={activities} setActivities={setActivities} />} />
         <Route path='/routines' element={<Routines routines={routines} setRoutines={setRoutines}/>} />
+        <Route path='/myroutines' element={<MyRoutines activities={activities} setActivities={setActivities} user={user}/>}/>
         {/* <Route path='/posts/:id/edit' element={<Edit currentPostInput={currentPostInput} />} /> */}
         {/* <Route path='/posts/:id/delete' element={<Delete  post={currentPostInput}/>} /> */}
         {/* <Route path='/posts/:id/message' element={<Message post={currentPostInput}/>} /> */}

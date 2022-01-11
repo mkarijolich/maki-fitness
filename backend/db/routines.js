@@ -15,9 +15,9 @@ async function getRoutineById(id){
         `,[id])
        
         const { rows: activities} = await client.query(`
-            SELECT activities.*, count,duration
+            SELECT activities.*, count,duration, routine_activities.id as "routineActivityId"
             FROM activities
-            JOIN routine_activities ON activities.id=routine_activities."routineId"
+            JOIN routine_activities ON activities.id=routine_activities."activityId"
             WHERE routine_activities."routineId"=$1;
         `,[id])
         // console.log(activities)
@@ -80,8 +80,7 @@ async function getAllRoutinesByUser({ username }){
         WHERE username=$1
     `,[username])
 
-    return await _getRoutineDetails(allRoutines)
-        
+    return await _getRoutineDetails(allRoutines)  
     
 }
 

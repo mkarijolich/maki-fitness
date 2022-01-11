@@ -31,8 +31,10 @@ app.use((error, req, res, next) => {
 
   res.status(status);
   res.send({
+    error: {
       name: error.name,
       message: error.message
+    }
   });
 });
 

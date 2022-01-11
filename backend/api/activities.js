@@ -61,9 +61,9 @@ activitiesRouter.get('/:activityId/routines', async(req,res,next) => {
     try{
         const publicRoutines = await getPublicRoutinesByActivity({ id: activityId })
         
-        res.send(
-            publicRoutines
-        )
+        res.send({
+            "routines" : publicRoutines,
+        })
 
     }catch ({ name, message }) {
     next({ name, message });

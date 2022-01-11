@@ -12,6 +12,8 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 import { fetchAllActivities, createNewActivity } from "../src/API/index";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
+import Paper from '@mui/material/Paper';
+
 
 const theme = createTheme();
 
@@ -30,6 +32,8 @@ const Activities = (props) => {
     });
   }, [setActivities]);
 
+  let getRandomColor = () => "#" + Math.floor(Math.random() * 16777215).toString(16);
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="false">
@@ -42,88 +46,106 @@ const Activities = (props) => {
             display: "flex",
             justifyContent: "flex-end",
             alignItems: "flex-end",
+            pr: "20px"
           }}
         >
           <Typography fontSize="2rem">Discover Activities</Typography>
         </Box>
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            mt: 6,
-            mb: 6,
-          }}
-        >
-          <Typography variant="h4">All Activities</Typography>
-        </Box>
+        <Container>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              mt: 6,
+              mb: 6,
+            }}
+          >
+            <Typography variant="h4">All Activities</Typography>
+          </Box>
+
+          <Container
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: 15,
+            }}
+          >
+            {activities
+              ? activities.map((activity) => (
+                  <Card>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="140"
+                        sx={{backgroundColor: getRandomColor()}}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                          {activity.name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {activity.description}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                ))
+              : null}
+          </Container>
+        </Container>
 
         <Container
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: 15,
-          }}
-        >
-          {activities
-            ? activities.map((activity) => (
-                <Card>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      height="140"
-                      image="/static/images/cards/contemplative-reptile.jpg"
-                      alt="green iguana"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {activity.name}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {activity.description}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              ))
-            : null}
-        </Container>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            mt: 6,
-            mb: 6,
-          }}
-        >
-          <Typography variant="h4">Featured Activities</Typography>
-        </Box>
+        sx={{
+          mb: 6
+        }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              mt: 6,
+              mb: 6,
+            }}
+          >
+            <Typography variant="h4">Featured Activities</Typography>
+          </Box>
 
-        <Card sx={{ maxWidth: "345" }}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="140"
-              image="/static/images/cards/contemplative-reptile.jpg"
-              alt="green iguana"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {featuredActivity.name}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {featuredActivity.description}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
+          <Card sx={{ maxWidth: "345" }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="140"
+                sx={{backgroundColor: getRandomColor()}}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {featuredActivity.name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {featuredActivity.description}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Container>
 
         {Object.keys(user).length > 0 ? (
           <Container>
-            <Typography>Create Your Activity</Typography>
-            <Box component="form" sx={{ color: "white" }}>
-              <Grid container spacing={2}>
-                <Grid Grid item xs={12} sm={12}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                mt: 6,
+                mb: 6,
+              }}
+            >
+              <Typography variant="h4">Create Your Activity</Typography>
+            </Box>
+
+            <Box component="form">
+              <Paper>
+              <Grid container spacing={2} mb={6}>
+                <Grid item xs={12} sm={12} mx={6}>
                   <TextField
                     name="name"
                     required
@@ -170,6 +192,7 @@ const Activities = (props) => {
                   </Box>
                 </Grid>
               </Grid>
+              </Paper>
             </Box>
           </Container>
         ) : null}
