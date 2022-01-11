@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/system";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -7,15 +7,11 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { Button, CardActionArea } from "@mui/material";
 import {
-  fetchAllActivities,
-  createNewActivity,
-  fetchMyRoutines,
   updateRoutine,
-  deleteRoutine,
   updateRoutineActivity,
   deleteRoutineActivity,
   createRoutineActivity
-} from "./API/index";
+} from "../API/index";
 import Stack from "@mui/material/Stack";
 import Select from "@mui/material/Select";
 import MenuItem from '@mui/material/MenuItem';

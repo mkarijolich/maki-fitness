@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 import { Box, width } from "@mui/system";
@@ -9,7 +9,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Button, CardActionArea, CardActions } from "@mui/material";
-import { fetchAllActivities, createNewActivity } from "../src/API/index";
+import { fetchAllActivities, createNewActivity } from "../API/index"
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Paper from '@mui/material/Paper';

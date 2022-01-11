@@ -12,13 +12,12 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 import RoutineCard from "./RoutineCard";
 import {
   fetchAllActivities,
-  createNewActivity,
   fetchMyRoutines,
   getMe,
   updateRoutine,
   deleteRoutine,
   createNewRoutine
-} from "./API/index";
+} from "../API/index";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";

@@ -6,23 +6,21 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
-import image from "./redd-gdQnsMbhkUs-unsplash.jpg";
+import image from "../redd-gdQnsMbhkUs-unsplash.jpg";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Card from "@mui/material/Card";
 import Collapse from "@mui/material/Collapse";
-import CssBaseline from "@mui/material/CssBaseline";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import IconButton from "@mui/material/IconButton";
 import { Button, CardActionArea, CardActions } from "@mui/material";
-import Alert from '@mui/material/Alert';
-import './App.css';
+import '../App.css';
 
 
-import { login, register, getPublicRoutinesByActivity } from "../src/API/index";
+import { login, register } from "../API/index";
 
 const theme = createTheme();
 
@@ -30,8 +28,6 @@ const Home = (props) => {
   const { user, setUser } = props;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [failure, setFailure] = useState(false);
-  const [open, setOpen] = React.useState(false);
 
   const navigate = useNavigate();
 
@@ -48,8 +44,6 @@ const Home = (props) => {
       const token = response.token;
       console.log(token);
       if (!token) {
-        setFailure(true);
-        setOpen(true);
         return;
       }
       const user = {
@@ -61,8 +55,6 @@ const Home = (props) => {
       localStorage.setItem("username", username);
       localStorage.setItem("token", token);
 
-      setFailure(false);
-      setOpen(true);
       navigate("/myroutines");
     } else if (response.error) {
       alert(response.error.message);
@@ -80,8 +72,6 @@ const Home = (props) => {
         const token = response.token;
         console.log(token);
         if (!token) {
-          setFailure(true);
-          setOpen(true);
           return;
         }
         const user = {

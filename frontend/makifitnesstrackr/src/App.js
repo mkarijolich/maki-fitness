@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css';
 
-import Home from "../src/Home"
-import Activities from './Activities';
-import Routines from './Routines';
-import NavBar from './NavBar';
-import MyRoutines from './MyRoutines';
+import Home from "./components/Home"
+import Activities from './components/Activities';
+import Routines from './components/Routines';
+import NavBar from './components/NavBar';
+import MyRoutines from './components/MyRoutines';
 
-import { fetchAllActivities, fetchAllRoutines, createNewActivity, createNewRoutine, login, register } from "../src/API/index";
+import { fetchAllActivities, fetchAllRoutines } from "./API/index";
 
 
 
