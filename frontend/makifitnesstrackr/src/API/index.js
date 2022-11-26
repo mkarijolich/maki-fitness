@@ -1,6 +1,4 @@
-export const BASE_URL = "http://localhost:3000/api";
-export const COHORT_NAME = "2108-UIC-RM-WEB-PT";
-export const API_URL = BASE_URL + "/" + COHORT_NAME;
+export const BASE_URL = "https://afternoon-harbor-84955.herokuapp.com/api"
 
 const getTokenFromLocalStorage = () => {
     return localStorage.getItem('token');
