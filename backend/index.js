@@ -10,7 +10,7 @@ server.use(morgan('dev'));
 
 const cors = require('cors')
 server.use(cors({
-    origin: 'https://mkarijolich-fitness-tracker.onrender.com'
+    origin: '*'
 }));
 
 server.use(express.json());
