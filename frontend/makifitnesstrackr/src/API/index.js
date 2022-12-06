@@ -1,4 +1,4 @@
-export const BASE_URL = "https://mkarijolich-fitness-tracker-backend.onrender.com"
+export const BASE_URL = "https://mkarijolich-fitness-tracker-backend.onrender.com/api"
 
 const getTokenFromLocalStorage = () => {
     return localStorage.getItem('token');
