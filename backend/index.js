@@ -9,7 +9,9 @@ const morgan = require('morgan');
 server.use(morgan('dev'));
 
 const cors = require('cors')
-server.use(cors())
+server.use(cors({
+    origin: 'https://mkarijolich-fitness-tracker.onrender.com'
+}));
 
 server.use(express.json());
 
