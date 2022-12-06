@@ -1,4 +1,4 @@
-export const BASE_URL = "https://afternoon-harbor-84955.herokuapp.com/api"
+export const BASE_URL = "https://mkarijolich-fitness-tracker-backend.onrender.com"
 
 const getTokenFromLocalStorage = () => {
     return localStorage.getItem('token');
