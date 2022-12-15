@@ -10,7 +10,7 @@ async function getRoutineById(id){
                 routines.*,
                 username AS "creatorName"
            FROM routines
-           JOIN users ON users.id=routines."creatorId"
+           JOIN fitness_users ON fitness_users.id=routines."creatorId"
            WHERE routines.id=$1
         `,[id])
        
@@ -76,7 +76,7 @@ async function getAllRoutinesByUser({ username }){
     const {rows: allRoutines} = await client.query(`
         SELECT routines.id
         FROM routines
-        JOIN users ON users.id=routines."creatorId"
+        JOIN fitness_users ON fitness_users.id=routines."creatorId"
         WHERE username=$1
     `,[username])
 
@@ -89,7 +89,7 @@ async function getPublicRoutinesByUser({ username }){
     const {rows: allPublicRoutine} = await client.query(`
         SELECT routines.id
         FROM routines
-        JOIN users ON users.id=routines."creatorId"
+        JOIN fitness_users ON fitness_users.id=routines."creatorId"
         WHERE "isPublic"=true
         AND username=$1
     `,[username])

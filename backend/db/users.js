@@ -13,7 +13,7 @@ async function createUser({username,password}){//make sure to hash the password 
         const hashedPassword = await _hashPassword(password);
         
         const { rows:[user] } = await client.query(`
-            INSERT INTO users(username,password)
+            INSERT INTO fitness_users(username,password)
             VALUES($1, $2)
             ON CONFLICT (username) DO NOTHING
             RETURNING *;
@@ -47,7 +47,7 @@ async function getUserById(id){
 try{
     const { rows: [user] } = await client.query(`
         SELECT *
-        FROM users
+        FROM fitness_users
         WHERE id=$1
     `, [id])
 
@@ -66,7 +66,7 @@ async function getUserByUsername(username){
     try{
         const { rows:[user] } = await client.query(`
             SELECT *
-            FROM users
+            FROM fitness_users
             WHERE username=$1
         `,[username])
         console.log(user)

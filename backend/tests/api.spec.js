@@ -54,7 +54,7 @@ describe('API', () => {
       it('EXTRA CREDIT: Hashes password before saving user to DB.', async () => {
         const {rows: [queriedUser]} = await client.query(`
           SELECT *
-          FROM users
+          FROM fitness_users
           WHERE id = $1;
         `, [registeredUser.id]);
         expect(queriedUser.password).not.toBe(newUser.password);
